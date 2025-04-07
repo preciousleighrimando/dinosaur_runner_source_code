@@ -57,7 +57,7 @@ class Dinosaur:
     X_POS = 80
     Y_POS = SCREEN_HEIGHT - 263  # Move Dino higher
     Y_POS_DUCK = SCREEN_HEIGHT - 224  # Move ducking position higher
-    JUMP_VEL = 8.5
+    JUMP_VEL = 7.2
 
     def __init__(self):
         self.duck_img = DUCKING
@@ -650,7 +650,7 @@ def meduim_mode():
                 else:
                     obstacles.append([SmallCactus, LargeCactus, BirdIndex][(choice1 - 1) % 3]([small_cactus, large_cactus, bird_img][(choice1 - 1) % 3]))
                     obstacles[-1].rect.x += random.randint(800, 900)  # Adjust x-axis for proper spacing
-
+                
             elif levels >= 2:  # Level 2: Spawn objects side by side
 
                 # Pass 1/6 || 2 obsacles 3/6 || 3 obstacles 2/6 
@@ -684,51 +684,58 @@ def meduim_mode():
                         obstacles.append([SmallCactus, LargeCactus, BirdIndex][choice]([small_cactus, large_cactus][choice]))
                         obstacles[-1].rect.x += random.randint(50, 100)  # Adjust x-axis for spacing
                         obstacles.append([SmallCactus, LargeCactus][choice1]([small_cactus, large_cactus][choice1]))
-                        obstacles[-1].rect.x += random.randint(750, 900)  # Adjust x-axis for spacing
+                        obstacles[-1].rect.x += random.randint(775, 900)  # Adjust x-axis for spacing
                         obstacles.append([SmallCactus, LargeCactus][choice2]([small_cactus, large_cactus][choice2]))
                         obstacles[-1].rect.x += random.randint(800, 900)  # Adjust x-axis for spacing
 
-                elif levels >= 3:  # Level 3: Spawn objects side by side
-                    # Pass 1/6 || 3 obsacles 3/6 || 4 obstacles 2/6
-                    choice1 = random.randint(0, 7)
-                    if choice1 == 0:
-                        pass
-                    elif choice1 >= 1:
+            elif levels >= 3:  # Level 3: Spawn objects side by side
+                # Pass 1/6 || 3 obsacles 3/6 || 4 obstacles 2/6
+                choice1 = random.randint(0, 7)
+                if choice1 == 0:
+                    pass
+                elif choice1 >= 1:
+                    choice = random.randint(0, 1)
+                    # choice3 = random.randint(0, 2)
+                    if choice == 0:
                         choice = random.randint(0, 1)
-                        # choice3 = random.randint(0, 2)
-                        if choice == 0:
-                            choice = random.randint(0, 1)
-                            choice1 = random.randint(0, 1)
-                            choice2 = random.randint(0, 2)
-                            obstacles.append([SmallCactus, LargeCactus][choice]([small_cactus, large_cactus][choice]))
-                            obstacles[-1].rect.x += random.randint(50, 100)  # Adjust x-axis for spacing
-                            obstacles.append([SmallCactus, LargeCactus][choice1]([small_cactus, large_cactus][choice1]))
-                            obstacles[-1].rect.x += random.randint(75, 100)  # Adjust x-axis for spacing
-                            obstacles.append([SmallCactus, LargeCactus, BirdIndex][choice2]([small_cactus, large_cactus, bird_img][choice2]))
-                            obstacles[-1].rect.x += random.randint(800, 900)  # Adjust x-axis for spacing
-                        else:
-                            choice = random.randint(0, 2)
-                            choice1 = random.randint(0, 1)
-                            choice2 = random.randint(0, 1)
-                            obstacles.append([SmallCactus, LargeCactus, BirdIndex][choice]([small_cactus, large_cactus, bird_img][choice]))
-                            obstacles[-1].rect.x += random.randint(50, 100)  # Adjust x-axis for spacing
-                            obstacles.append([SmallCactus, LargeCactus][choice1]([small_cactus, large_cactus][choice1]))
-                            obstacles[-1].rect.x += random.randint(750, 900)  # Adjust x-axis for spacing
-                            obstacles.append([SmallCactus, LargeCactus][choice2]([small_cactus, large_cactus][choice2]))
-                            obstacles[-1].rect.x += random.randint(800, 900)  # Adjust x-axis for spacing
-                    elif choice1 >= 5:
+                        choice1 = random.randint(0, 1)
+                        choice2 = random.randint(0, 2)
+                        obstacles.append([SmallCactus, LargeCactus][choice]([small_cactus, large_cactus][choice]))
+                        obstacles[-1].rect.x += random.randint(50, 100)  # Adjust x-axis for spacing
+                        obstacles.append([SmallCactus, LargeCactus][choice1]([small_cactus, large_cactus][choice1]))
+                        obstacles[-1].rect.x += random.randint(75, 100)  # Adjust x-axis for spacing
+                        obstacles.append([SmallCactus, LargeCactus, BirdIndex][choice2]([small_cactus, large_cactus, bird_img][choice2]))
+                        obstacles[-1].rect.x += random.randint(800, 900)  # Adjust x-axis for spacing
+                    else:
+                        choice = random.randint(0, 2)
+                        choice1 = random.randint(0, 1)
+                        choice2 = random.randint(0, 1)
+                        obstacles.append([SmallCactus, LargeCactus, BirdIndex][choice]([small_cactus, large_cactus, bird_img][choice]))
+                        obstacles[-1].rect.x += random.randint(50, 100)  # Adjust x-axis for spacing
+                        obstacles.append([SmallCactus, LargeCactus][choice1]([small_cactus, large_cactus][choice1]))
+                        obstacles[-1].rect.x += random.randint(775, 900)  # Adjust x-axis for spacing
+                        obstacles.append([SmallCactus, LargeCactus][choice2]([small_cactus, large_cactus][choice2]))
+                        obstacles[-1].rect.x += random.randint(800, 900)  # Adjust x-axis for spacing
+                elif choice1 >= 3:
+                        obstacles.append(BirdIndex(bird_img))
+                        obstacles[-1].rect.x += random.randint(100, 200)  # Adjust x-axis for proper spacing
+                        obstacles.append(BirdIndex(bird_img))
+                        obstacles[-1].rect.x += random.randint(600, 650)  # Adjust x-axis for proper spacing
+                        obstacles.append(BirdIndex(bird_img))
+                        obstacles[-1].rect.x += random.randint(1000, 1050)  # Adjust x-axis for proper spacing
+                elif choice1 >= 5:
                         choice = random.randint(0, 2)
                         choice1 = random.randint(0, 1)
                         choice2 = random.randint(0, 1)
                         choice3 = random.randint(0, 2)
-                        obstacles.append([SmallCactus, LargeCactus, BirdIndex][choice]([small_cactus, large_cactus][choice]))
+                        obstacles.append([SmallCactus, LargeCactus, BirdIndex][choice]([small_cactus, large_cactus, bird_img][choice]))
                         obstacles[-1].rect.x += random.randint(50, 70)  # Adjust x-axis for spacing
                         obstacles.append([SmallCactus, LargeCactus][choice1]([small_cactus, large_cactus][choice1]))
-                        obstacles[-1].rect.x += random.randint(75, 100)  # Adjust x-axis for spacing
+                        obstacles[-1].rect.x += random.randint(600, 625)  # Adjust x-axis for spacing
                         obstacles.append([SmallCactus, LargeCactus][choice2]([small_cactus, large_cactus][choice2]))
-                        obstacles[-1].rect.x += random.randint(800, 900)  # Adjust x-axis for spacing
+                        obstacles[-1].rect.x += random.randint(1400, 1450)  # Adjust x-axis for spacing
                         obstacles.append([SmallCactus, LargeCactus, BirdIndex][choice3]([small_cactus, large_cactus, bird_img][choice3]))
-                        obstacles[-1].rect.x += random.randint(825, 900)  # Adjust x-axis for spacing
+                        obstacles[-1].rect.x += random.randint(2000, 2100)  # Adjust x-axis for spacing
 
 
                         # if choice3 >= 1:
